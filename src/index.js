@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import Root from '@pages/main/index';
+import Root from '@pages/index';
 
 import './index.css';
 import reportWebVitals from './reportWebVitals';
