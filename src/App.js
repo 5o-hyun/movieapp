@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import ErrorPage from '@pages/ErrorPage';
 import Root from '@pages/index';
 
 import './App.css';
@@ -9,6 +10,7 @@ function App() {
     {
       path: '/',
       element: <Root />,
+      errorElement: <ErrorPage />,
     },
   ]);
 
