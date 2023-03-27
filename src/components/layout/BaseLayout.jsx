@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Header from '@components/common/Header';
-import Navigation from '@components/common/Navigation';
+import Header from '@components/base/Header';
+import Navigation from '@components/base/Navigation';
 
 const BaseLayout = ({ children }) => {
   return (
