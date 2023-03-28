@@ -33,14 +33,16 @@ export const devices = {
 };
 
 export const spacing = {
-  minute: '2rem',
-  microTiny: '4rem', // ${({ theme }) => theme.spacing.microTiny}
-  tiny: '8rem',
-  tinySmall: '10rem',
-  small: '12rem',
-  smallMedium: '16rem',
-  medium: '24rem',
-  large: '28rem',
+  minute: '0.2rem',
+  microTiny: '0.4rem', // ${({ theme }) => theme.spacing.microTiny}
+  tiny: '0.8rem',
+  tinySmall: '1rem',
+  small: '1.2rem',
+  smallMedium: '1.6rem',
+  base: '2rem',
+  medium: '2.4rem',
+  large: '2.8rem',
+  bigLarge: '4rem',
 };
 
 export const theme = {

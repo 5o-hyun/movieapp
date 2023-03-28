@@ -42,8 +42,16 @@ ${normalize}
     list-style:none;
   }
   img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .blind{
+    position: absolute;
+    clip:rect(0 0 0 0);
+    width:0;
+    height:0;
+    overflow: hidden;
+    color:white;
+  }
 `;
