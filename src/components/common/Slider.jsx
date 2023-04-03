@@ -7,7 +7,13 @@ const Slider = ({ genreMovies }) => {
   if (!genreMovies) return null;
   return (
     <Container>
-      <Swiper slidesPerView={3.5} spaceBetween={10} className="sliderSwiper">
+      <Swiper
+        breakpoints={{
+          1024: { slidesPerView: 5.5, spaceBetween: 30 },
+          320: { slidesPerView: 3.5, spaceBetween: 10 },
+        }}
+        className="sliderSwiper"
+      >
         {genreMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
             <img
