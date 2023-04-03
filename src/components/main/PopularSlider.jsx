@@ -1,24 +1,24 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { getTrendingMovies } from '@lib/api/movie';
 
 import Star from '@components/common/Star';
 
 const PopularSlider = ({ videoType }) => {
   const [popularContents, setPopularContents] = useState();
   useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/trending/${videoType.typeNameEn}/week?api_key=0cef53adbd0dec528ee38372eaa058b2&language=ko-KO`
-      )
-      .then((response) => {
-        const sortMovies = response.data.results;
-        setPopularContents(
-          sortMovies.sort((a, b) => b.popularity - a.popularity)
-        );
-      });
+    const getPopularMovies = async (typeNameEn, period) => {
+      const getPopular = await getTrendingMovies(
+        `${videoType.typeNameEn}`,
+        'week'
+      );
+      setPopularContents(
+        getPopular.sort((a, b) => b.popularity - a.popularity)
+      );
+    };
+    getPopularMovies();
   }, []);
   if (!popularContents) return null;
 

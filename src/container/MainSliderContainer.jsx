@@ -1,21 +1,18 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import { getTrendingMovies } from '@lib/api/movie';
 
 import MainSlider from '@components/main/MainSlider';
 
 const MainSliderContainer = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    axios
-      .get(
-        'https://api.themoviedb.org/3/trending/movie/day?api_key=0cef53adbd0dec528ee38372eaa058b2&language=ko-KO'
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          setMovies(response.data.results);
-        }
-      });
+    const getMoviesTrending = async (typeNameEn, period) => {
+      const result = await getTrendingMovies('movie', 'day');
+      setMovies(result);
+    };
+    getMoviesTrending();
   }, []);
 
   return (

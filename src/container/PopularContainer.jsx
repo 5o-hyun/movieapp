@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
+
+import { getMovies } from '@lib/api/movie';
 
 import Title from '@components/common/Title';
 import PopularList from '@components/main/PopularList';
@@ -34,14 +35,18 @@ const PopularContainer = () => {
   useEffect(() => {
     videoTypes.map((videoType) =>
       videoType.genre.map(async (genreItem) => {
-        axios
-          .get(
-            `https://api.themoviedb.org/3/discover/${videoType.typeNameEn}?api_key=0cef53adbd0dec528ee38372eaa058b2&language=ko-KO&with_genres=${genreItem.id}`
-          )
-          .then((response) => {
-            genreItem.movies = response.data.results;
-            setVideoTypes((prevState) => Object.assign([], videoTypes));
-          });
+        genreItem.movies = (
+          await getMovies(videoType.typeNameEn, genreItem.id)
+        ).results;
+        setVideoTypes((prevState) => Object.assign([], videoTypes));
+        // axios
+        //   .get(
+        //     `https://api.themoviedb.org/3/discover/${videoType.typeNameEn}?api_key=0cef53adbd0dec528ee38372eaa058b2&language=ko-KO&with_genres=${genreItem.id}`
+        //   )
+        //   .then((response) => {
+        //     genreItem.movies = response.data.results;
+        //     setVideoTypes((prevState) => Object.assign([], videoTypes));
+        //   });
       })
     );
   }, []);
