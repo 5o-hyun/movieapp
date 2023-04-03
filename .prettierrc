@@ -10,7 +10,7 @@
     "^@pages/(.*)$",
     "^@container/(.*)$",
     "^@components/(.*)$",
-    "^@public/(.*)$",
+    "^@assets/(.*)$",
     "^@styles/(.*)$",
     "^[./]"
   ],

@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import useScrollPosition from '@lib/hooks/useScrollPosition';
 import useWindowSize from '@lib/hooks/useWindowSize';
 
+import logo from '@assets/img/logo.png';
+import logoNonText from '@assets/img/logoNonText.png';
+
 const Header = () => {
   const windowScroll = useScrollPosition();
   const { responsive } = useWindowSize();
@@ -17,11 +20,7 @@ const Header = () => {
           <h1>
             <span className="blind">movieapp</span>
             <img
-              src={
-                responsive !== 'desktop'
-                  ? 'img/png/logoNonText.png'
-                  : 'img/png/logo.png'
-              }
+              src={responsive !== 'desktop' ? `${logoNonText}` : `${logo}`}
               alt="logo"
             />
           </h1>
