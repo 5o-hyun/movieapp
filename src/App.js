@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 import ErrorPage from '@pages/ErrorPage';
 import Root from '@pages/index';
+import MoviePage from '@pages/movie';
 
 import { GlobalStyle } from '@styles/GlobalStyle';
 import theme from '@styles/theme';
@@ -14,6 +15,11 @@ function App() {
     {
       path: '/',
       element: <Root />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/list/movie',
+      element: <MoviePage />,
       errorElement: <ErrorPage />,
     },
   ]);

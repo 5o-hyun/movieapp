@@ -8,23 +8,27 @@ export const tabMenus = [
     name: 'home',
     icon: <AiOutlineHome />,
     iconActive: <AiFillHome />,
+    link: '/',
   },
   {
     id: 2,
     name: 'movie',
     icon: <RiMovie2Line />,
     iconActive: <RiMovie2Fill />,
+    link: '/list/movie',
   },
   {
     id: 3,
     name: 'tv',
     icon: <BsTv />,
     iconActive: <BsTvFill />,
+    link: '/list/tv',
   },
   {
     id: 4,
     name: 'search',
     icon: <AiOutlineSearch />,
     iconActive: <AiOutlineSearch />,
+    link: '/search',
   },
 ];

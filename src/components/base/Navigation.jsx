@@ -20,7 +20,7 @@ const Navigation = () => {
             onClick={() => menuActiveHandler(tab.id)}
             className={menuActive === tab.id ? 'active menu' : 'menu'}
           >
-            <Link>
+            <Link to={tab.link}>
               {tab.icon}
               <p>{tab.name}</p>
             </Link>
