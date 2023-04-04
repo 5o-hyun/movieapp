@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { tabMenus } from '@lib/data/data';
+import { navigationMenus } from '@lib/data/data';
 
 const Navigation = () => {
-  const [menuActive, setMenuActive] = useState(0);
-  const menuActiveHandler = (id) => {
-    setMenuActive(id);
-  };
+  const location = useLocation();
 
   return (
     <Container>
       <h2 className="blind">주요서비스</h2>
       <ul className="menuWrapper">
-        {tabMenus.map((tab) => (
+        {navigationMenus.map((tab) => (
           <li
             key={tab.id}
-            onClick={() => menuActiveHandler(tab.id)}
-            className={menuActive === tab.id ? 'active menu' : 'menu'}
+            className={location.pathname === tab.link ? 'active menu' : 'menu'}
           >
             <Link to={tab.link}>
               {tab.icon}
