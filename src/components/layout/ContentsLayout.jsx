@@ -6,8 +6,13 @@ const ContentsLayout = ({ children }) => {
 };
 const Container = styled.div`
   padding: 0 ${({ theme }) => theme.spacing.bigLarge};
+  margin-bottom: 10rem;
+  @media ${({ theme }) => theme.devices.tablet} {
+    margin-bottom: 8rem;
+  }
   @media ${({ theme }) => theme.devices.mobile} {
     padding: 0 ${({ theme }) => theme.spacing.base};
+    margin-bottom: 6rem;
   }
 `;
 
