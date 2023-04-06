@@ -2,7 +2,7 @@ import { AiFillHome, AiOutlineHome, AiOutlineSearch } from 'react-icons/ai';
 import { BsTv, BsTvFill } from 'react-icons/bs';
 import { RiMovie2Fill, RiMovie2Line } from 'react-icons/ri';
 
-export const tabMenus = [
+export const navigationMenus = [
   {
     id: 1,
     name: 'home',
