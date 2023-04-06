@@ -2,9 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { getGenres } from '@lib/api/movie';
 
-import GenreSlider from '@components/common/GenreSlider';
+import GenreTabSlider from '@components/genre/GenreTabSlider';
 
-const MovieListContainer = () => {
+const GenreListContainer = () => {
   const [tabs, setTabs] = useState();
   const [genreTabActive, setGenreTabActive] = useState(-1);
 
@@ -23,7 +23,7 @@ const MovieListContainer = () => {
   }, []);
 
   // 장르 받아온걸 '전체'추가후 새로운 배열로 만들기
-  const genreList = useMemo(() => {
+  const genreTabList = useMemo(() => {
     if (!tabs) return null;
     const genreListCopy = JSON.parse(JSON.stringify(tabs));
     genreListCopy.unshift({
@@ -37,8 +37,8 @@ const MovieListContainer = () => {
 
   return (
     <>
-      <GenreSlider
-        genreList={genreList}
+      <GenreTabSlider
+        genreTabList={genreTabList}
         genreTabActive={genreTabActive}
         onClickGenreTab={onClickGenreTab}
       />
@@ -46,4 +46,4 @@ const MovieListContainer = () => {
   );
 };
 
-export default MovieListContainer;
+export default GenreListContainer;

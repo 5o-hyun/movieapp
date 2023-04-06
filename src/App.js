@@ -2,8 +2,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import ErrorPage from '@pages/ErrorPage';
+import GenrePage from '@pages/genre';
 import Root from '@pages/index';
-import MoviePage from '@pages/movie';
 
 import { GlobalStyle } from '@styles/GlobalStyle';
 import theme from '@styles/theme';
@@ -19,7 +19,7 @@ function App() {
     },
     {
       path: '/list/movie',
-      element: <MoviePage />,
+      element: <GenrePage />,
       errorElement: <ErrorPage />,
     },
   ]);

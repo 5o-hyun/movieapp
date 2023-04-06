@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-const GenreSlider = ({ genreList, genreTabActive, onClickGenreTab }) => {
+const GenreSlider = ({ genreTabList, genreTabActive, onClickGenreTab }) => {
   return (
     <Container>
+      <h2 className="blind">장르별영화</h2>
       <Swiper
         className="genreSlider"
         slidesPerView="auto"
@@ -13,7 +14,7 @@ const GenreSlider = ({ genreList, genreTabActive, onClickGenreTab }) => {
           320: { spaceBetween: 10 },
         }}
       >
-        {genreList.map((genre) => (
+        {genreTabList.map((genre) => (
           <SwiperSlide
             key={genre.id}
             className={genreTabActive === genre.id && 'active'}
