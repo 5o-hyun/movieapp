@@ -13,3 +13,9 @@ export const getTrendingMovies = async (typeNameEn, period) => {
   const response = await defaultAxios.get(`/trending/${typeNameEn}/${period}`);
   return response.data.results;
 };
+
+// 장르조회
+export const getGenres = async (type) => {
+  const response = await defaultAxios.get(`genre/${type}/list`);
+  return response.data;
+};
