@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 
-import { getMovies } from '@lib/api/movie';
+import { getGenreMovies } from '@lib/api/movie';
 
 import Title from '@components/common/Title';
 import PopularList from '@components/main/PopularList';
@@ -36,7 +36,7 @@ const PopularContainer = () => {
     videoTypes.map((videoType) =>
       videoType.genre.map(async (genreItem) => {
         genreItem.movies = (
-          await getMovies(videoType.typeNameEn, genreItem.id)
+          await getGenreMovies(videoType.typeNameEn, genreItem.id)
         ).results;
         setVideoTypes((prevState) => Object.assign([], videoTypes));
         // axios
