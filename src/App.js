@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import ErrorPage from '@pages/ErrorPage';
+import DetailPage from '@pages/detail';
 import GenrePage from '@pages/genre';
 import Root from '@pages/index';
 
@@ -20,6 +21,11 @@ function App() {
     {
       path: '/list/movie',
       element: <GenrePage />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/list/movie/:movieId',
+      element: <DetailPage />,
       errorElement: <ErrorPage />,
     },
   ]);

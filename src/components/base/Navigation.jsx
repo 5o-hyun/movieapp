@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -7,6 +8,15 @@ import { navigationMenus } from '@lib/data/data';
 const Navigation = () => {
   const location = useLocation();
 
+  const [url, setUrl] = useState(location.pathname.substring(0, 12));
+
+  useEffect(() => {
+    if (url.endsWith('/')) {
+      if (url === '/') return undefined;
+      setUrl(url.slice(0, -1));
+    }
+  }, [url]);
+
   return (
     <Container>
       <h2 className="blind">주요서비스</h2>
@@ -14,7 +24,7 @@ const Navigation = () => {
         {navigationMenus.map((tab) => (
           <li
             key={tab.id}
-            className={location.pathname === tab.link ? 'active menu' : 'menu'}
+            className={url === tab.link ? 'active menu' : 'menu'}
           >
             <Link to={tab.link}>
               {tab.icon}
