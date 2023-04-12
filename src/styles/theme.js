@@ -12,7 +12,7 @@ export const colors = {
     700: '#54565a',
     800: '#212721',
   },
-  white: '#fffff',
+  white: '#ffffff',
   black: '#000000',
 };
 
