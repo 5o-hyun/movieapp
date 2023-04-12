@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Star from '@components/common/Star';
@@ -6,15 +7,17 @@ import Star from '@components/common/Star';
 const GenreListItem = ({ genreContentsItem }) => {
   return (
     <Container>
-      <div className="picture">
-        <img
-          src={
-            `https://image.tmdb.org/t/p/w500` + genreContentsItem.poster_path
-          }
-          alt="영화포스터"
-        />
-        <StyledStar point={genreContentsItem.vote_average} />
-      </div>
+      <Link to={`/list/movie/${genreContentsItem.id}`}>
+        <div className="picture">
+          <img
+            src={
+              `https://image.tmdb.org/t/p/w500` + genreContentsItem.poster_path
+            }
+            alt="영화포스터"
+          />
+          <StyledStar point={genreContentsItem.vote_average} />
+        </div>
+      </Link>
       <p className="pictureTitle">{genreContentsItem.title}</p>
     </Container>
   );
