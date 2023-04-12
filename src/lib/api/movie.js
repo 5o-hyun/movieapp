@@ -19,3 +19,9 @@ export const getGenres = async (type) => {
   const response = await defaultAxios.get(`genre/${type}/list`);
   return response.data;
 };
+
+// 영화 1개 정보 가져오기
+export const getMovie = async (movieId) => {
+  const response = await defaultAxios.get(`/movie/${movieId}`);
+  return response.data;
+};
