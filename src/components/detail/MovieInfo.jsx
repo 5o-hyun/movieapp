@@ -42,37 +42,44 @@ const MovieInfo = ({ movie }) => {
               <p>시간 : {movie.runtime} 분</p>
             </li>
           </ul>
-          <div className="infoOverviewWrapper">
-            <p
-              className={
-                isOpenOverview === true ? 'infoOverview add' : 'infoOverview'
-              }
-            >
-              {movie.overview}
-            </p>
-            <button className="overviewBtn" onClick={() => onOverviewHandler()}>
-              {isOpenOverview === true ? '접기' : '더보기'}
-            </button>
-          </div>
+          {movie.overview && (
+            <div className="infoOverviewWrapper">
+              <p
+                className={
+                  isOpenOverview === true ? 'infoOverview add' : 'infoOverview'
+                }
+              >
+                {movie.overview}
+              </p>
+              <button
+                className="overviewBtn"
+                onClick={() => onOverviewHandler()}
+              >
+                {isOpenOverview === true ? '접기' : '더보기'}
+              </button>
+            </div>
+          )}
         </div>
       </div>
-      <div className="infoOverviewWrapperBottom">
-        <p
-          className={
-            isOpenOverview === true ? 'infoOverview add' : 'infoOverview'
-          }
-        >
-          {movie.overview}
-        </p>
-        <button className="overviewBtn" onClick={() => onOverviewHandler()}>
-          {isOpenOverview === true ? '접기' : '더보기'}
-        </button>
-      </div>
+      {movie.overview && (
+        <div className="infoOverviewWrapperBottom">
+          <p
+            className={
+              isOpenOverview === true ? 'infoOverview add' : 'infoOverview'
+            }
+          >
+            {movie.overview}
+          </p>
+          <button className="overviewBtn" onClick={() => onOverviewHandler()}>
+            {isOpenOverview === true ? '접기' : '더보기'}
+          </button>
+        </div>
+      )}
     </Container>
   );
 };
 const Container = styled.div`
-  background-image: url('');
+  margin-bottom: ${({ theme }) => theme.spacing.base};
   .movieInfoWrapper {
     width: 1024px;
     margin: 0 auto;
@@ -83,8 +90,7 @@ const Container = styled.div`
       gap: ${({ theme }) => theme.spacing.medium};
     }
     @media ${({ theme }) => theme.devices.mobile} {
-      width: 100%;
-      gap: ${({ theme }) => theme.spacing.smallMedium};
+      flex-direction: column;
     }
     .infoImgBox {
       width: 38rem;
@@ -93,7 +99,9 @@ const Container = styled.div`
         width: 30rem;
       }
       @media ${({ theme }) => theme.devices.mobile} {
-        width: 30%;
+        width: auto;
+        max-width: 45rem;
+        align-self: center;
       }
     }
     .infoBox {
@@ -101,6 +109,7 @@ const Container = styled.div`
       .infoTitle {
         font-size: 3.4rem;
         margin-bottom: ${({ theme }) => theme.spacing.base};
+        color: ${({ theme }) => theme.colors.white};
         @media ${({ theme }) => theme.devices.tablet} {
           font-size: 2.8rem;
         }
@@ -129,7 +138,7 @@ const Container = styled.div`
         }
         @media ${({ theme }) => theme.devices.mobile} {
           font-size: 1.2rem;
-          margin-bottom: ${({ theme }) => theme.spacing.small};
+          margin-bottom: ${({ theme }) => theme.spacing.tiny};
         }
       }
       ul.infoDetailBox {
@@ -139,7 +148,7 @@ const Container = styled.div`
         margin-bottom: ${({ theme }) => theme.spacing.base};
         @media ${({ theme }) => theme.devices.mobile} {
           gap: ${({ theme }) => theme.spacing.tiny};
-          margin-bottom: ${({ theme }) => theme.spacing.small};
+          margin-bottom: ${({ theme }) => theme.spacing.tiny};
         }
         li.infoDetail {
           font-size: 1.6rem;
@@ -197,7 +206,6 @@ const Container = styled.div`
   }
   .infoOverviewWrapperBottom {
     display: none;
-    margin-top: ${({ theme }) => theme.spacing.small};
     @media ${({ theme }) => theme.devices.mobile} {
       display: block;
     }
@@ -245,6 +253,9 @@ const StyledStar = styled(Star)`
 `;
 const StyledKeyword = styled(Keyword)`
   margin-bottom: ${({ theme }) => theme.spacing.base};
+  @media ${({ theme }) => theme.devices.mobile} {
+    margin-bottom: ${({ theme }) => theme.spacing.small};
+  }
 `;
 
 export default MovieInfo;
