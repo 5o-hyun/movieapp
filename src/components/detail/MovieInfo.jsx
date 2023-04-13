@@ -8,7 +8,6 @@ import Keyword from '@components/common/Keyword';
 import Star from '@components/common/Star';
 
 const MovieInfo = ({ movie }) => {
-  console.log(movie);
   const [isOpenOverview, setIsOpenOverview] = useState(false);
   const onOverviewHandler = () => {
     setIsOpenOverview((isOpenOverview) => !isOpenOverview);
