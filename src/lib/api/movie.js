@@ -25,3 +25,9 @@ export const getMovie = async (movieId) => {
   const response = await defaultAxios.get(`/movie/${movieId}`);
   return response.data;
 };
+
+// 영화 1개 정보의 사람(출연진,제작진) 가져오기
+export const getPersons = async (movieId) => {
+  const response = await defaultAxios.get(`/movie/${movieId}/credits`);
+  return response.data;
+};
