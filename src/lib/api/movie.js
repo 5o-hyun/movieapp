@@ -1,4 +1,4 @@
-import { defaultAxios } from './defaultAxios';
+import { defaultAxios, defaultAxiosBasic } from './defaultAxios';
 
 // 장르에따른 영화목록 가져오기
 export const getGenreMovies = async (typeNameEn, genreId) => {
@@ -29,5 +29,11 @@ export const getMovie = async (movieId) => {
 // 영화 1개 정보의 사람(출연진,제작진) 가져오기
 export const getPersons = async (movieId) => {
   const response = await defaultAxios.get(`/movie/${movieId}/credits`);
+  return response.data;
+};
+
+// 영화 1개 정보의 포스터들 가져오기
+export const getPosters = async (movieId) => {
+  const response = await defaultAxiosBasic.get(`/movie/${movieId}/images`);
   return response.data;
 };

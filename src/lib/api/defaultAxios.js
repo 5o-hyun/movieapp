@@ -9,3 +9,10 @@ export const defaultAxios = axios.create({
     language: 'ko-KO',
   },
 });
+
+export const defaultAxiosBasic = axios.create({
+  baseURL,
+  params: {
+    api_key: '0cef53adbd0dec528ee38372eaa058b2',
+  },
+});
