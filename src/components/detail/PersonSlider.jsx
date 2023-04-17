@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const PersonSlider = ({ persons, title }) => {
-  console.log(persons);
   return (
     <Container>
       <p className="title">
@@ -35,16 +34,6 @@ const PersonSlider = ({ persons, title }) => {
             <p className="department">{person.known_for_department}</p>
           </SwiperSlide>
         ))}
-        <SwiperSlide>
-          <div className="pic"></div>
-          <p className="name">네임네임네임네임</p>
-          <p className="department">department</p>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="pic"></div>
-          <p className="name">네임네임네임네임</p>
-          <p className="department">department</p>
-        </SwiperSlide>
       </Swiper>
     </Container>
   );
