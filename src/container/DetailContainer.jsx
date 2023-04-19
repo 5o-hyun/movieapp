@@ -8,6 +8,7 @@ import { getMovie, getPersons, getPosters } from '@lib/api/movie';
 import MovieInfo from '@components/detail/MovieInfo';
 import PersonSlider from '@components/detail/PersonSlider';
 import PosterSlider from '@components/detail/PosterSlider';
+import Review from '@components/detail/Review';
 
 const DetailContainer = () => {
   const location = useLocation();
@@ -52,6 +53,7 @@ const DetailContainer = () => {
       <PersonSlider persons={cast} title="출연진" />
       <PersonSlider persons={crew} title="제작진" />
       <PosterSlider posters={posters} />
+      <Review />
     </Container>
   );
 };
