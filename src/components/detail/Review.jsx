@@ -1,47 +1,36 @@
 import React from 'react';
+import { BsPersonFillSlash } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Review = () => {
+const Review = ({ reviews }) => {
   return (
     <Container>
       <p className="title">리뷰</p>
       <ul className="reviewContainer">
-        <li className="reviewWrapper">
-          <div className="reviewPersonImg"></div>
-          <div className="reviewContents">
-            <p className="reviewPersonName">name</p>
-            <p className="reviewPersonDesc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo odio
-              harum fuga quis numquam possimus alias vel! Velit laborum fuga
-              illum, culpa temporibus, ex ut recusandae quaerat animi quisquam
-              nulla.
-            </p>
-          </div>
-        </li>
-        <li className="reviewWrapper">
-          <div className="reviewPersonImg"></div>
-          <div className="reviewContents">
-            <p className="reviewPersonName">name</p>
-            <p className="reviewPersonDesc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo odio
-              harum fuga quis numquam possimus alias vel! Velit laborum fuga
-              illum, culpa temporibus, ex ut recusandae quaerat animi quisquam
-              nulla.
-            </p>
-          </div>
-        </li>
-        <li className="reviewWrapper">
-          <div className="reviewPersonImg"></div>
-          <div className="reviewContents">
-            <p className="reviewPersonName">name</p>
-            <p className="reviewPersonDesc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo odio
-              harum fuga quis numquam possimus alias vel! Velit laborum fuga
-              illum, culpa temporibus, ex ut recusandae quaerat animi quisquam
-              nulla.
-            </p>
-          </div>
-        </li>
+        {reviews.map((review) => (
+          <Link to={review.url} target="_blank">
+            <li key={review.id} className="reviewWrapper">
+              <div className="reviewPersonImg">
+                {review.author_details.avatar_path ? (
+                  <img
+                    src={
+                      `https://image.tmdb.org/t/p/w500` +
+                      review.author_details.avatar_path
+                    }
+                    alt="사람이미지"
+                  />
+                ) : (
+                  <BsPersonFillSlash />
+                )}
+              </div>
+              <div className="reviewContents">
+                <p className="reviewPersonName">{review.author}</p>
+                <p className="reviewPersonDesc">{review.content}</p>
+              </div>
+            </li>
+          </Link>
+        ))}
       </ul>
     </Container>
   );
@@ -68,14 +57,28 @@ const Container = styled.div`
     li.reviewWrapper {
       display: flex;
       gap: ${({ theme }) => theme.spacing.smallMedium};
+      cursor: pointer;
       .reviewPersonImg {
         width: 6rem;
         height: 6rem;
         border-radius: 50%;
-        background-color: red;
+        border: 1px solid ${({ theme }) => theme.colors.gray[800]};
+        display: flex;
+        align-items: center;
+        justify-content: center;
         @media ${({ theme }) => theme.devices.mobile} {
           width: 4rem;
           height: 4rem;
+        }
+        img {
+          border-radius: 50%;
+          min-width: 40px;
+        }
+        svg {
+          width: 60%;
+          height: 60%;
+          color: ${({ theme }) => theme.colors.color};
+          min-width: 40px;
         }
       }
       .reviewContents {

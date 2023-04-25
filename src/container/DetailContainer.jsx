@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getMovie, getPersons, getPosters } from '@lib/api/movie';
+import { getMovie, getPersons, getPosters, getReviews } from '@lib/api/movie';
 
 import MovieInfo from '@components/detail/MovieInfo';
 import PersonSlider from '@components/detail/PersonSlider';
@@ -18,6 +18,7 @@ const DetailContainer = () => {
   const [cast, setCast] = useState();
   const [crew, setCrew] = useState();
   const [posters, setPosters] = useState();
+  const [reviews, setReviews] = useState();
 
   useEffect(() => {
     const getMovieAxios = async (movieId) => {
@@ -44,6 +45,14 @@ const DetailContainer = () => {
     getPostersAxios();
   }, []);
 
+  useEffect(() => {
+    const getReviewsAxios = async (movieId) => {
+      const result = await getReviews(locationMovieId);
+      setReviews(result.results);
+    };
+    getReviewsAxios();
+  }, []);
+
   if (!movie) return null;
   if (!cast) return null;
 
@@ -53,7 +62,7 @@ const DetailContainer = () => {
       <PersonSlider persons={cast} title="출연진" />
       <PersonSlider persons={crew} title="제작진" />
       <PosterSlider posters={posters} />
-      <Review />
+      <Review reviews={reviews} />
     </Container>
   );
 };

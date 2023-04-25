@@ -37,3 +37,9 @@ export const getPosters = async (movieId) => {
   const response = await defaultAxiosBasic.get(`/movie/${movieId}/images`);
   return response.data;
 };
+
+// 영화 1개 정보의 리뷰 가져오기
+export const getReviews = async (movieId) => {
+  const response = await defaultAxiosBasic.get(`/movie/${movieId}/reviews`);
+  return response.data;
+};
