@@ -26,10 +26,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  aspect-ratio: 1 / 1.4457831;
-  @media ${({ theme }) => theme.devices.mobile} {
-    aspect-ratio: 1 / 2;
-  }
   a {
     display: block;
     width: 100%;
