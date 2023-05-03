@@ -30,10 +30,15 @@ const Container = styled.div`
   @media ${({ theme }) => theme.devices.mobile} {
     aspect-ratio: 1 / 2;
   }
-  .picture {
-    height: 90%;
-    position: relative;
-    cursor: pointer;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    .picture {
+      height: 95%;
+      position: relative;
+      cursor: pointer;
+    }
   }
   .pictureTitle {
     text-align: center;

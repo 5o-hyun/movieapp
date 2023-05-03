@@ -56,11 +56,7 @@ const PopularContainer = () => {
       {videoTypes.map((videoType) => (
         <Container key={videoType.id}>
           <h2 className="blind">{`Weekly ${videoType.typeNameKo} TOP 20`}</h2>
-          <Title
-            name={`Weekly ${videoType.typeNameKo} TOP 20`}
-            icon
-            italic="true"
-          />
+          <Title name={`Weekly ${videoType.typeNameKo} TOP 20`} italic="true" />
           <PopularSlider videoType={videoType} />
           <PopularList videoType={videoType} />
         </Container>
