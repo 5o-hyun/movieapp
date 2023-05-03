@@ -55,6 +55,7 @@ const DetailContainer = () => {
 
   if (!movie) return null;
   if (!cast) return null;
+  if (!posters) return null;
 
   return (
     <Container>
