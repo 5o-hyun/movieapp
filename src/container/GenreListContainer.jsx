@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import { getGenreMovies, getGenres } from '@lib/api/movie';
+import { getGenreMovies, getGenres, getMovies } from '@lib/api/movie';
 
 import GenreListItem from '@components/genre/GenreListItem';
 import GenreTabSlider from '@components/genre/GenreTabSlider';
@@ -27,6 +27,17 @@ const GenreListContainer = () => {
 
   // 장르에 따른 영화목록 받아오기
   useEffect(() => {
+    // '전체'
+    if (genreTabActive === -1) {
+      const getMoviesAxios = async (typeNameEn) => {
+        const result = await getMovies('movie');
+        setGenreContentsList(result.results);
+      };
+      getMoviesAxios();
+      return;
+    }
+
+    // '장르별'
     const getGenreMoviesAxios = async (typeNameEn, genreId) => {
       const result = await getGenreMovies('movie', `${genreTabActive}`);
       setGenreContentsList(result.results);
