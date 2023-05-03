@@ -9,7 +9,7 @@ const Review = ({ reviews }) => {
       <p className="title">리뷰</p>
       <ul className="reviewContainer">
         {reviews.map((review) => (
-          <Link to={review.url} target="_blank">
+          <Link to={review.url} key={review.id} target="_blank">
             <li key={review.id} className="reviewWrapper">
               <div className="reviewPersonImg">
                 {review.author_details.avatar_path ? (

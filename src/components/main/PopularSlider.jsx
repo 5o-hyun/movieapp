@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -27,15 +28,17 @@ const PopularSlider = ({ videoType }) => {
       <Swiper slidesPerView={3.5} spaceBetween={10} className="popularSwiper">
         {popularContents.map((contents, index) => (
           <SwiperSlide key={contents.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500` + contents.poster_path}
-              alt={contents.title}
-              className="poster"
-            />
-            <div className="contents">
-              <em className="rank">{index + 1}</em>
-              <StyledStar point={contents.vote_average} />
-            </div>
+            <Link to={`/list/movie/${contents.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500` + contents.poster_path}
+                alt={contents.title}
+                className="poster"
+              />
+              <div className="contents">
+                <em className="rank">{index + 1}</em>
+                <StyledStar point={contents.vote_average} />
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

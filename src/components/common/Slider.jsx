@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,10 +17,12 @@ const Slider = ({ genreMovies }) => {
       >
         {genreMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
-              alt={movie.title}
-            />
+            <Link to={`/list/movie/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
+                alt={movie.title}
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
