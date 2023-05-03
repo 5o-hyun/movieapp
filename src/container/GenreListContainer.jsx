@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getGenreMovies, getGenres, getMovies } from '@lib/api/movie';
@@ -11,9 +12,15 @@ const GenreListContainer = () => {
   const [genreTabActive, setGenreTabActive] = useState(-1);
   const [genreContentsList, setGenreContentsList] = useState();
 
+  const navigate = useNavigate();
   // 장르 탭 active
   const onClickGenreTab = (id) => {
     setGenreTabActive(id);
+    if (id === -1) {
+      navigate(``, { replace: true });
+      return;
+    }
+    navigate(`?genre=${id}`, { replace: true });
   };
 
   // 장르 받아오기
@@ -79,6 +86,7 @@ const GenreListContainer = () => {
 };
 const GenreContentsList = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(6, 1fr);
   gap: ${({ theme }) => theme.spacing.base};
   @media ${({ theme }) => theme.devices.mobile} {
