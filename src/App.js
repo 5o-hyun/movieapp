@@ -5,6 +5,7 @@ import ErrorPage from '@pages/ErrorPage';
 import DetailPage from '@pages/detail';
 import GenrePage from '@pages/genre';
 import Root from '@pages/index';
+import TvPage from '@pages/tv';
 
 import { GlobalStyle } from '@styles/GlobalStyle';
 import theme from '@styles/theme';
@@ -26,6 +27,11 @@ function App() {
     {
       path: '/list/movie/:movieId',
       element: <DetailPage />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/list/tv',
+      element: <TvPage />,
       errorElement: <ErrorPage />,
     },
   ]);
