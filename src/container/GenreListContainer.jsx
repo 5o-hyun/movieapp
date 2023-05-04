@@ -77,6 +77,7 @@ const GenreListContainer = () => {
         {genreContentsList.map((genreContentsItem) => (
           <GenreListItem
             key={genreContentsItem.id}
+            contents={'movie'}
             genreContentsItem={genreContentsItem}
           />
         ))}

@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import Star from '@components/common/Star';
 
-const GenreListItem = ({ genreContentsItem }) => {
+const GenreListItem = ({ contents, genreContentsItem }) => {
   return (
     <Container>
-      <Link to={`/list/movie/${genreContentsItem.id}`}>
+      <Link to={`/list/${contents}/${genreContentsItem.id}`}>
         <div className="picture">
           <img
             src={
