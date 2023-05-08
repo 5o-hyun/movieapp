@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Keyword from '@components/common/Keyword';
 import Star from '@components/common/Star';
 
-const MovieInfo = ({ movie }) => {
+const MovieInfo = ({ movie, locationType }) => {
   const [isOpenOverview, setIsOpenOverview] = useState(false);
   const onOverviewHandler = () => {
     setIsOpenOverview((isOpenOverview) => !isOpenOverview);
@@ -22,9 +22,15 @@ const MovieInfo = ({ movie }) => {
           />
         </div>
         <div className="infoBox">
-          <p className="infoTitle">{movie.title}</p>
+          <p className="infoTitle">
+            {locationType === 'movie' && <>{movie.title}</>}
+            {locationType === 'tv' && <>{movie.name}</>}
+          </p>
           <p className="tagline">{movie.tagline}</p>
-          <p className="originalTitle">{movie.original_title}</p>
+          <p className="originalTitle">
+            {locationType === 'movie' && <>{movie.original_title}</>}
+            {locationType === 'tv' && <>{movie.original_name}</>}
+          </p>
           <StyledStar point={movie.vote_average} />
           <StyledKeyword keywords={movie.genres} />
           <ul className="infoDetailBox">
@@ -34,12 +40,37 @@ const MovieInfo = ({ movie }) => {
             </li>
             <li className="infoDetail">
               <RiMovie2Line />
-              <p>개봉 : {movie.release_date}</p>
+              {locationType === 'movie' && <p>개봉 : {movie.release_date}</p>}
+              {locationType === 'tv' && (
+                <p>
+                  {movie.first_air_date} ~ {movie.last_air_date}
+                </p>
+              )}
             </li>
             <li className="infoDetail">
               <AiOutlineClockCircle />
-              <p>시간 : {movie.runtime} 분</p>
+              {locationType === 'movie' && <p>시간 : {movie.runtime} 분</p>}
+              {locationType === 'tv' && (
+                <p>
+                  시즌 : {movie.number_of_seasons}개 - 에피소드 :{' '}
+                  {movie.number_of_episodes}개
+                </p>
+              )}
             </li>
+            {locationType === 'tv' && (
+              <li className="infoDetail">
+                <AiOutlineClockCircle />
+                <p style={{ textDecoration: 'underline' }}>
+                  <a
+                    href={`${movie.homepage}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {movie.homepage}
+                  </a>
+                </p>
+              </li>
+            )}
           </ul>
           {movie.overview && (
             <div className="infoOverviewWrapper">

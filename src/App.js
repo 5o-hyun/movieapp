@@ -34,6 +34,11 @@ function App() {
       element: <TvPage />,
       errorElement: <ErrorPage />,
     },
+    {
+      path: '/list/tv/:tvId',
+      element: <DetailPage />,
+      errorElement: <ErrorPage />,
+    },
   ]);
 
   return (

@@ -12,7 +12,8 @@ import Review from '@components/detail/Review';
 
 const DetailContainer = () => {
   const location = useLocation();
-  const locationMovieId = location.pathname.split('/').pop();
+  const locationType = location.pathname.split('/')[2];
+  const locationId = location.pathname.split('/').pop();
 
   const [movie, setMovie] = useState();
   const [cast, setCast] = useState();
@@ -21,16 +22,16 @@ const DetailContainer = () => {
   const [reviews, setReviews] = useState();
 
   useEffect(() => {
-    const getMovieAxios = async (movieId) => {
-      const result = await getMovie(locationMovieId);
+    const getMovieAxios = async (type, movieId) => {
+      const result = await getMovie(locationType, locationId);
       setMovie(result);
     };
     getMovieAxios();
   }, []);
 
   useEffect(() => {
-    const getPersonsAxios = async (movieId) => {
-      const result = await getPersons(locationMovieId);
+    const getPersonsAxios = async (type, movieId) => {
+      const result = await getPersons(locationType, locationId);
       setCast(result.cast);
       setCrew(result.crew);
     };
@@ -38,16 +39,16 @@ const DetailContainer = () => {
   }, []);
 
   useEffect(() => {
-    const getPostersAxios = async (movieId) => {
-      const result = await getPosters(locationMovieId);
+    const getPostersAxios = async (type, movieId) => {
+      const result = await getPosters(locationType, locationId);
       setPosters(result.posters);
     };
     getPostersAxios();
   }, []);
 
   useEffect(() => {
-    const getReviewsAxios = async (movieId) => {
-      const result = await getReviews(locationMovieId);
+    const getReviewsAxios = async (type, movieId) => {
+      const result = await getReviews(locationType, locationId);
       setReviews(result.results);
     };
     getReviewsAxios();
@@ -60,9 +61,10 @@ const DetailContainer = () => {
 
   return (
     <Container>
-      <MovieInfo movie={movie} />
-      <PersonSlider persons={cast} title="출연진" />
-      <PersonSlider persons={crew} title="제작진" />
+      {console.log(crew)}
+      <MovieInfo movie={movie} locationType={locationType} />
+      {cast.length !== 0 && <PersonSlider persons={cast} title="출연진" />}
+      {crew.length !== 0 && <PersonSlider persons={crew} title="제작진" />}
       <PosterSlider posters={posters} />
       <Review reviews={reviews} />
     </Container>
