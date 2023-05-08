@@ -57,7 +57,7 @@ const MovieInfo = ({ movie, locationType }) => {
                 </p>
               )}
             </li>
-            {locationType === 'tv' && (
+            {locationType === 'tv' && movie.homepage && (
               <li className="infoDetail">
                 <AiOutlineClockCircle />
                 <p style={{ textDecoration: 'underline' }}>

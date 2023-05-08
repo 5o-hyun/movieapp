@@ -61,12 +61,11 @@ const DetailContainer = () => {
 
   return (
     <Container>
-      {console.log(crew)}
       <MovieInfo movie={movie} locationType={locationType} />
       {cast.length !== 0 && <PersonSlider persons={cast} title="출연진" />}
       {crew.length !== 0 && <PersonSlider persons={crew} title="제작진" />}
       <PosterSlider posters={posters} />
-      <Review reviews={reviews} />
+      {reviews.length !== 0 && <Review reviews={reviews} />}
     </Container>
   );
 };
