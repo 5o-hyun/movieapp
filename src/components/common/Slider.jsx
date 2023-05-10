@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-const Slider = ({ genreMovies }) => {
+const Slider = ({ genreMovies, videoType }) => {
   if (!genreMovies) return null;
   return (
     <Container>
@@ -17,7 +17,7 @@ const Slider = ({ genreMovies }) => {
       >
         {genreMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <Link to={`/list/movie/${movie.id}`}>
+            <Link to={`/list/${videoType.typeNameEn}/${movie.id}`}>
               <img
                 src={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
                 alt={movie.title}

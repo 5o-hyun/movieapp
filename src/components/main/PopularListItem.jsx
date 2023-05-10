@@ -13,7 +13,7 @@ const PopularListItem = ({ genre, videoType }) => {
         icon
         fontSize={1.6}
       />
-      <Slider genreMovies={genre.movies} />
+      <Slider genreMovies={genre.movies} videoType={videoType} />
     </Container>
   );
 };
