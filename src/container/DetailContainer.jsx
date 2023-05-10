@@ -10,12 +10,11 @@ import MovieInfo from '@components/detail/MovieInfo';
 import PersonSlider from '@components/detail/PersonSlider';
 import PosterSlider from '@components/detail/PosterSlider';
 import Review from '@components/detail/Review';
-import SeasonSlider from '@components/detail/SeasonSlider';
 
 const DetailContainer = () => {
   const location = useLocation();
-  const locationType = location.pathname.split('/')[2];
-  const locationId = location.pathname.split('/').pop();
+  const locationType = location.pathname.split('/')[2]; // movie or tv
+  const locationId = location.pathname.split('/').pop(); // id
 
   const [movie, setMovie] = useState();
   const [cast, setCast] = useState();
@@ -66,8 +65,9 @@ const DetailContainer = () => {
       <MovieInfo movie={movie} locationType={locationType} />
       {cast.length !== 0 && <PersonSlider persons={cast} title="출연진" />}
       {crew.length !== 0 && <PersonSlider persons={crew} title="제작진" />}
-      {/* <SeasonSlider /> */}
-      <DetailImgSlider name="시즌" contents={movie.seasons} />
+      {locationType === 'tv' && (
+        <DetailImgSlider name="시즌" contents={movie.seasons} />
+      )}
       <PosterSlider posters={posters} />
       {reviews.length !== 0 && <Review reviews={reviews} />}
     </Container>

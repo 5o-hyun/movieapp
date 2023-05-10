@@ -1,15 +1,10 @@
 import React from 'react';
-// import { TbPhotoCancel } from 'react-icons/tb';
-import { MdCancel } from 'react-icons/md';
-import { TbPhotoCancel } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
+import { TbPhotoX } from 'react-icons/tb';
 import styled from 'styled-components';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const DetailImgSlider = ({ name, contents }) => {
-  // if (!contents) return null;
-  console.log(contents);
   return (
     <Container>
       <p className="title">
@@ -33,7 +28,7 @@ const DetailImgSlider = ({ name, contents }) => {
                   alt={content.name}
                 />
               ) : (
-                <MdCancel />
+                <TbPhotoX />
               )}
             </div>
             <p>[{content.name}]</p>
@@ -62,13 +57,20 @@ const Container = styled.div`
   .detailImgSliderSwiper {
     width: 100%;
     display: flex;
-    /* padding-bottom: ${({ theme }) => theme.spacing.bigLarge}; */
     .swiper-slide {
       .imgBox {
         width: 100%;
         aspect-ratio: 1 / 1.444140625;
+        border: 1px solid ${({ theme }) => theme.colors.gray[800]};
+        display: flex;
+        justify-content: center;
+        align-items: center;
         @media ${({ theme }) => theme.devices.tablet} {
           aspect-ratio: 1 / 1.4;
+        }
+        svg {
+          width: 3rem;
+          height: 3rem;
         }
       }
       p {
