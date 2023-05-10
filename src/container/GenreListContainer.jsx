@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { getGenreMovies, getGenres, getMovies } from '@lib/api/movie';
 
-import GenreListItem from '@components/genre/GenreListItem';
-import GenreTabSlider from '@components/genre/GenreTabSlider';
+import GenreListItem from '@components/list/GenreListItem';
+import GenreTabSlider from '@components/list/GenreTabSlider';
 
 const GenreListContainer = () => {
   const [tabs, setTabs] = useState();

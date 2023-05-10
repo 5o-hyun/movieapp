@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { getMovie, getPersons, getPosters, getReviews } from '@lib/api/movie';
 
 import DetailImgSlider from '@components/common/DetailImgSlider';
+import Company from '@components/detail/Company';
 import MovieInfo from '@components/detail/MovieInfo';
 import PersonSlider from '@components/detail/PersonSlider';
 import PosterSlider from '@components/detail/PosterSlider';
@@ -70,6 +71,9 @@ const DetailContainer = () => {
       )}
       <PosterSlider posters={posters} />
       {reviews.length !== 0 && <Review reviews={reviews} />}
+      {movie.production_companies && (
+        <Company companies={movie.production_companies} />
+      )}
     </Container>
   );
 };
