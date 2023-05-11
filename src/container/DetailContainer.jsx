@@ -71,7 +71,7 @@ const DetailContainer = () => {
       )}
       <PosterSlider posters={posters} />
       {reviews.length !== 0 && <Review reviews={reviews} />}
-      {movie.production_companies && (
+      {movie.production_companies.length !== 0 && (
         <Company companies={movie.production_companies} />
       )}
     </Container>

@@ -28,7 +28,7 @@ const PopularSlider = ({ videoType }) => {
       <Swiper slidesPerView={3.5} spaceBetween={10} className="popularSwiper">
         {popularContents.map((contents, index) => (
           <SwiperSlide key={contents.id}>
-            <Link to={`/list/movie/${contents.id}`}>
+            <Link to={`/list/${videoType.typeNameEn}/${contents.id}`}>
               <img
                 src={`https://image.tmdb.org/t/p/w500` + contents.poster_path}
                 alt={contents.title}
