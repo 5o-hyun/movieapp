@@ -92,6 +92,9 @@ const Container = styled.div`
           height: 1.4rem;
         }
       }
+      .department {
+        color: ${({ theme }) => theme.colors.gray[600]};
+      }
     }
   }
 `;

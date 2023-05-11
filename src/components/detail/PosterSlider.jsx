@@ -30,12 +30,12 @@ const PosterSlider = ({ posters }) => {
 const Container = styled.div`
   width: 1024px;
   margin: 0 auto;
-  margin-bottom: ${({ theme }) => theme.spacing.bigLarge};
+  padding-bottom: ${({ theme }) => theme.spacing.bigLarge};
   @media ${({ theme }) => theme.devices.tablet} {
     width: 100%;
   }
   @media ${({ theme }) => theme.devices.mobile} {
-    margin-bottom: ${({ theme }) => theme.spacing.smallMedium};
+    padding-bottom: ${({ theme }) => theme.spacing.smallMedium};
   }
   .title {
     font-size: 1.6rem;
