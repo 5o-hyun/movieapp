@@ -5,6 +5,7 @@ import ErrorPage from '@pages/ErrorPage';
 import DetailPage from '@pages/detail';
 import GenrePage from '@pages/genre';
 import Root from '@pages/index';
+import SearchPage from '@pages/search';
 import TvPage from '@pages/tv';
 
 import { GlobalStyle } from '@styles/GlobalStyle';
@@ -37,6 +38,11 @@ function App() {
     {
       path: '/list/tv/:tvId',
       element: <DetailPage />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/search',
+      element: <SearchPage />,
       errorElement: <ErrorPage />,
     },
   ]);
