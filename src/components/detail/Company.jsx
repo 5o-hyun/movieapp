@@ -51,7 +51,15 @@ const Container = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0.8rem;
+      padding: 0.2rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      span {
+        padding: 0 0.6rem;
+      }
     }
   }
 `;
