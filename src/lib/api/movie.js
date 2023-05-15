@@ -49,3 +49,13 @@ export const getReviews = async (type, movieId) => {
   const response = await defaultAxiosBasic.get(`/${type}/${movieId}/reviews`);
   return response.data;
 };
+
+// 검색 탭
+export const getSearch = async (type, text) => {
+  const response = await defaultAxios.get(`/search/${type}`, {
+    params: {
+      query: text,
+    },
+  });
+  return response.data;
+};
