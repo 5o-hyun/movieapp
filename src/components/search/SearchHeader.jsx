@@ -2,15 +2,35 @@ import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
 
-const SearchHeader = () => {
+const SearchHeader = ({
+  videoTypes,
+  isSearchTab,
+  searchText,
+  onClickSearchTab,
+}) => {
   return (
     <Container>
       <div className="searchWrapper">
         <div className="genreTabGroup">
-          <button className="genreTabBtn active">movie</button>
-          <button className="genreTabBtn">tv</button>
+          {videoTypes.map((videoType) => (
+            <button
+              key={videoType.id}
+              className={
+                isSearchTab === videoType.id
+                  ? 'genreTabBtn active'
+                  : 'genreTabBtn'
+              }
+              onClick={() => onClickSearchTab(videoType.id)}
+            >
+              {videoType.name}
+            </button>
+          ))}
         </div>
-        <input type="text" placeholder="검색어를 입력해주세요." />
+        <input
+          type="text"
+          placeholder="검색어를 입력해주세요."
+          value={searchText}
+        />
       </div>
       <button className="searchBtn">
         <AiOutlineSearch />
@@ -69,6 +89,11 @@ const Container = styled.div`
       border: 0;
       border-radius: 0.4rem;
       padding-left: 1rem;
+      color: ${({ theme }) => theme.colors.white};
+
+      &:focus {
+        outline: none;
+      }
       @media ${({ theme }) => theme.devices.mobile} {
         height: 2.8rem;
         font-size: 1.2rem;
