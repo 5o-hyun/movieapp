@@ -32,3 +32,8 @@ export const navigationMenus = [
     link: '/search',
   },
 ];
+
+export const videoTypes = [
+  { id: 1, name: 'movie' },
+  { id: 2, name: 'tv' },
+];
