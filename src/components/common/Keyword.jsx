@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Keyword = ({ keywords, ...props }) => {
   return (
     <Container {...props}>
-      {keywords.map((keyword) => (
-        <li className="keyword" key={keyword.id}>
+      {keywords.map((keyword, index) => (
+        <li className="keyword" key={index}>
           {keyword.name}
         </li>
       ))}
