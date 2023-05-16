@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TbPhotoCancel } from 'react-icons/tb';
 import styled from 'styled-components';
 
+import { getGenres } from '@lib/api/movie';
+
 import Date from '@components/common/Date';
-import Keyword from '@components/common/Keyword';
 import Like from '@components/common/Like';
 import Star from '@components/common/Star';
 
-const SearchListItem = ({ searchLists }) => {
+const SearchListItem = ({ searchLists, videoTypeActive }) => {
+  const [genreLists, setGenreLists] = useState();
+  useEffect(() => {
+    const getGenreAxios = async (type) => {
+      const result = await getGenres(`${videoTypeActive}`);
+      setGenreLists(result.genres);
+    };
+    getGenreAxios();
+  }, []);
+
+  if (!genreLists) return null;
+
   return (
     <>
       {searchLists.map((searchList) => (
@@ -31,7 +43,18 @@ const SearchListItem = ({ searchLists }) => {
             </div>
           </div>
           <div className="bottom">
-            <Keyword keywords={searchList.genre_ids} />
+            <div className="contentsSubInfo">
+              {genreLists.map((genreList) =>
+                searchList.genre_ids.map(
+                  (genre) =>
+                    genre === genreList.id && (
+                      <div className="keyword" key={genreList.id}>
+                        {genreList.name}
+                      </div>
+                    )
+                )
+              )}
+            </div>
             <div className="contentsSubInfo">
               <Star point={searchList.vote_average} />
               <Like count={searchList.vote_count} />
@@ -88,10 +111,25 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media ${({ theme }) => theme.devices.mobile} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: ${({ theme }) => theme.spacing.tiny};
+    }
     .contentsSubInfo {
       display: flex;
       align-items: center;
       gap: ${({ theme }) => theme.spacing.tiny};
+      .keyword {
+        border: 1px solid ${({ theme }) => theme.colors.subColor};
+        border-radius: 2rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 1.2rem;
+        color: ${({ theme }) => theme.colors.subColor};
+        @media ${({ theme }) => theme.devices.mobile} {
+          font-size: 0.8rem;
+        }
+      }
     }
   }
 `;

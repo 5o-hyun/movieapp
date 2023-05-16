@@ -39,7 +39,10 @@ const SearchContainer = () => {
         onClickSearchTab={onClickSearchTab}
       />
       <ContentsLayout>
-        <SearchListItem searchLists={searchLists} />
+        <SearchListItem
+          searchLists={searchLists}
+          videoTypeActive={videoTypeActive}
+        />
       </ContentsLayout>
       <Navigation />
     </>
