@@ -1,4 +1,5 @@
 import React from 'react';
+import { TbPhotoCancel } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -9,12 +10,17 @@ const GenreListItem = ({ contents, genreContentsItem }) => {
     <Container>
       <Link to={`/list/${contents}/${genreContentsItem.id}`}>
         <div className="picture">
-          <img
-            src={
-              `https://image.tmdb.org/t/p/w500` + genreContentsItem.poster_path
-            }
-            alt="영화포스터"
-          />
+          {genreContentsItem.poster_path ? (
+            <img
+              src={
+                `https://image.tmdb.org/t/p/w500` +
+                genreContentsItem.poster_path
+              }
+              alt="영화포스터"
+            />
+          ) : (
+            <TbPhotoCancel className="icon" />
+          )}
           <StyledStar point={genreContentsItem.vote_average} />
         </div>
       </Link>
@@ -34,6 +40,13 @@ const Container = styled.div`
       height: 95%;
       position: relative;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .icon {
+        width: 30%;
+        height: 30%;
+      }
     }
   }
   .pictureTitle {

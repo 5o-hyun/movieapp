@@ -88,7 +88,7 @@ const GenreListContainer = () => {
 const GenreContentsList = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: ${({ theme }) => theme.spacing.base};
   @media ${({ theme }) => theme.devices.mobile} {
     grid-template-columns: repeat(4, 1fr);
