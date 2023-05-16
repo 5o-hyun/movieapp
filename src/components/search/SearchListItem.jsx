@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TbPhotoCancel } from 'react-icons/tb';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getGenres } from '@lib/api/movie';
@@ -23,45 +24,50 @@ const SearchListItem = ({ searchLists, videoTypeActive }) => {
   return (
     <>
       {searchLists.map((searchList) => (
-        <Container key={searchList.id}>
-          <div className="top">
-            <div className="imgBox">
-              {searchList.poster_path ? (
-                <img
-                  src={
-                    `https://image.tmdb.org/t/p/w500` + searchList.poster_path
-                  }
-                  alt="영화포스터"
-                />
-              ) : (
-                <TbPhotoCancel />
-              )}
+        <Link
+          to={`/list/${videoTypeActive}/${searchList.id}`}
+          key={searchList.id}
+        >
+          <Container>
+            <div className="top">
+              <div className="imgBox">
+                {searchList.poster_path ? (
+                  <img
+                    src={
+                      `https://image.tmdb.org/t/p/w500` + searchList.poster_path
+                    }
+                    alt="영화포스터"
+                  />
+                ) : (
+                  <TbPhotoCancel />
+                )}
+              </div>
+              <div className="contentsMainInfo">
+                <p className="title">{searchList.title}</p>
+                <p className="desc">{searchList.overview}</p>
+              </div>
             </div>
-            <div className="contentsMainInfo">
-              <p className="title">{searchList.title}</p>
-              <p className="desc">{searchList.overview}</p>
+            <div className="bottom">
+              <div className="contentsSubInfo">
+                {genreLists.map((genreList) =>
+                  searchList.genre_ids.map(
+                    (genre) =>
+                      genre === genreList.id && (
+                        <div className="keyword" key={genreList.id}>
+                          {genreList.name}
+                        </div>
+                      )
+                  )
+                )}
+              </div>
+              <div className="contentsSubInfo">
+                <Star point={searchList.vote_average} />
+                <Like count={searchList.vote_count} />
+                <Date date={searchList.release_date} />
+              </div>
             </div>
-          </div>
-          <div className="bottom">
-            <div className="contentsSubInfo">
-              {genreLists.map((genreList) =>
-                searchList.genre_ids.map(
-                  (genre) =>
-                    genre === genreList.id && (
-                      <div className="keyword" key={genreList.id}>
-                        {genreList.name}
-                      </div>
-                    )
-                )
-              )}
-            </div>
-            <div className="contentsSubInfo">
-              <Star point={searchList.vote_average} />
-              <Like count={searchList.vote_count} />
-              <Date date={searchList.release_date} />
-            </div>
-          </div>
-        </Container>
+          </Container>
+        </Link>
       ))}
     </>
   );
