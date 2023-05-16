@@ -7,6 +7,7 @@ const SearchHeader = ({
   isSearchTab,
   searchText,
   onClickSearchTab,
+  onChangeSearchText,
 }) => {
   return (
     <Container>
@@ -30,6 +31,7 @@ const SearchHeader = ({
           type="text"
           placeholder="검색어를 입력해주세요."
           value={searchText}
+          onChange={onChangeSearchText}
         />
       </div>
       <button className="searchBtn">
