@@ -1,16 +1,25 @@
 import { defaultAxios, defaultAxiosBasic } from './defaultAxios';
 
 // 장르에따른 영화목록 가져오기
-export const getGenreMovies = async (typeNameEn, genreId) => {
+export const getGenreMovies = async (typeNameEn, genreId, pageNumber) => {
   const response = await defaultAxios.get(
-    `/discover/${typeNameEn}?&with_genres=${genreId}`
+    `/discover/${typeNameEn}?&with_genres=${genreId}`,
+    {
+      params: {
+        page: pageNumber,
+      },
+    }
   );
   return response.data;
 };
 
 // 영화목록 가져오기
-export const getMovies = async (typeNameEn) => {
-  const response = await defaultAxios.get(`/discover/${typeNameEn}`);
+export const getMovies = async (typeNameEn, pageNumber) => {
+  const response = await defaultAxios.get(`/discover/${typeNameEn}`, {
+    params: {
+      page: pageNumber,
+    },
+  });
   return response.data;
 };
 

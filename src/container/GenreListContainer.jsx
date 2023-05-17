@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,12 +11,14 @@ import GenreTabSlider from '@components/list/GenreTabSlider';
 const GenreListContainer = () => {
   const [tabs, setTabs] = useState();
   const [genreTabActive, setGenreTabActive] = useState(-1);
-  const [genreContentsList, setGenreContentsList] = useState();
+  const [genreContentsList, setGenreContentsList] = useState([]);
+  const [page, setPage] = useState(1);
 
   const navigate = useNavigate();
   // 장르 탭 active
   const onClickGenreTab = (id) => {
     setGenreTabActive(id);
+    setPage(1);
     if (id === -1) {
       navigate(``, { replace: true });
       return;
@@ -33,23 +36,31 @@ const GenreListContainer = () => {
   }, []);
 
   // 장르에 따른 영화목록 받아오기
-  useEffect(() => {
-    // '전체'
+  const getMoviesAxios = async (typeNameEn, pageNumber) => {
+    const result = await getMovies('movie', page);
+    const newData = result.results;
+    setGenreContentsList((prev) => [...prev, ...newData]);
+    setPage((prev) => prev + 1);
+  };
+
+  const getGenreMoviesAxios = async (typeNameEn, genreId, pageNumber) => {
+    const response = await getGenreMovies('movie', `${genreTabActive}`, page);
+    const newData = response.results;
+    setGenreContentsList((prev) => [...prev, ...newData]);
+    setPage((prev) => prev + 1);
+  };
+
+  const fetchData = () => {
     if (genreTabActive === -1) {
-      const getMoviesAxios = async (typeNameEn) => {
-        const result = await getMovies('movie');
-        setGenreContentsList(result.results);
-      };
       getMoviesAxios();
       return;
     }
-
-    // '장르별'
-    const getGenreMoviesAxios = async (typeNameEn, genreId) => {
-      const result = await getGenreMovies('movie', `${genreTabActive}`);
-      setGenreContentsList(result.results);
-    };
     getGenreMoviesAxios();
+  };
+
+  useEffect(() => {
+    setGenreContentsList([]);
+    fetchData();
   }, [genreTabActive]);
 
   // 장르 받아온걸 '전체'추가후 새로운 배열로 만들기
@@ -63,7 +74,6 @@ const GenreListContainer = () => {
     return genreListCopy;
   }, [tabs]);
 
-  if (!genreContentsList) return null;
   if (!tabs) return null;
 
   return (
@@ -73,15 +83,23 @@ const GenreListContainer = () => {
         genreTabActive={genreTabActive}
         onClickGenreTab={onClickGenreTab}
       />
-      <GenreContentsList>
-        {genreContentsList.map((genreContentsItem) => (
-          <GenreListItem
-            key={genreContentsItem.id}
-            contents={'movie'}
-            genreContentsItem={genreContentsItem}
-          />
-        ))}
-      </GenreContentsList>
+      <InfiniteScroll
+        dataLength={genreContentsList.length}
+        next={fetchData}
+        hasMore={true}
+        loader={<p>Loading...</p>}
+        style={{ overflow: 'hidden' }}
+      >
+        <GenreContentsList>
+          {genreContentsList.map((genreContentsItem, index) => (
+            <GenreListItem
+              key={index}
+              contents={'movie'}
+              genreContentsItem={genreContentsItem}
+            />
+          ))}
+        </GenreContentsList>
+      </InfiniteScroll>
     </>
   );
 };
