@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { AiOutlineClockCircle, AiOutlineLineChart } from 'react-icons/ai';
 import { RiMovie2Line } from 'react-icons/ri';
+import { TbPhotoCancel } from 'react-icons/tb';
 import styled from 'styled-components';
 
 import Keyword from '@components/common/Keyword';
@@ -16,10 +17,14 @@ const MovieInfo = ({ movie, locationType }) => {
     <Container>
       <div className="movieInfoWrapper">
         <div className="infoImgBox">
-          <img
-            src={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
-            alt="영화이미지"
-          />
+          {movie.poster_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt="영화이미지"
+            />
+          ) : (
+            <TbPhotoCancel />
+          )}
         </div>
         <div className="infoBox">
           <p className="infoTitle">
@@ -81,12 +86,14 @@ const MovieInfo = ({ movie, locationType }) => {
               >
                 {movie.overview}
               </p>
-              <button
-                className="overviewBtn"
-                onClick={() => onOverviewHandler()}
-              >
-                {isOpenOverview === true ? '접기' : '더보기'}
-              </button>
+              {movie.overview.length > 150 && (
+                <button
+                  className="overviewBtn"
+                  onClick={() => onOverviewHandler()}
+                >
+                  {isOpenOverview === true ? '접기' : '더보기'}
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -100,9 +107,11 @@ const MovieInfo = ({ movie, locationType }) => {
           >
             {movie.overview}
           </p>
-          <button className="overviewBtn" onClick={() => onOverviewHandler()}>
-            {isOpenOverview === true ? '접기' : '더보기'}
-          </button>
+          {movie.overview.length > 150 && (
+            <button className="overviewBtn" onClick={() => onOverviewHandler()}>
+              {isOpenOverview === true ? '접기' : '더보기'}
+            </button>
+          )}
         </div>
       )}
     </Container>
@@ -124,7 +133,11 @@ const Container = styled.div`
     }
     .infoImgBox {
       width: 38rem;
-      aspect-ratio: 1 / 1.5;
+      height: 57rem;
+      border: 1px solid ${({ theme }) => theme.colors.gray[800]};
+      display: flex;
+      align-items: center;
+      justify-content: center;
       @media ${({ theme }) => theme.devices.tablet} {
         width: 30rem;
       }
@@ -132,6 +145,11 @@ const Container = styled.div`
         width: auto;
         max-width: 45rem;
         align-self: center;
+        border: 0;
+      }
+      svg {
+        width: 30%;
+        height: 30%;
       }
     }
     .infoBox {

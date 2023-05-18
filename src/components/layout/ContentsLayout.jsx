@@ -5,9 +5,12 @@ const ContentsLayout = ({ children }) => {
   return <Container>{children}</Container>;
 };
 const Container = styled.div`
-  padding: 0 ${({ theme }) => theme.spacing.bigLarge};
+  width: 1024px;
+  margin: 0 auto;
   margin-bottom: 10rem;
   @media ${({ theme }) => theme.devices.tablet} {
+    width: auto;
+    padding: 0 ${({ theme }) => theme.spacing.bigLarge};
     margin-bottom: 8rem;
   }
   @media ${({ theme }) => theme.devices.mobile} {

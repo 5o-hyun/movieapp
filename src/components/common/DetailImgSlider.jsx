@@ -24,7 +24,7 @@ const DetailImgSlider = ({ name, contents }) => {
             <div className="imgBox">
               {content.poster_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w500` + content.poster_path}
+                  src={`https://image.tmdb.org/t/p/w500${content.poster_path}`}
                   alt={content.name}
                 />
               ) : (

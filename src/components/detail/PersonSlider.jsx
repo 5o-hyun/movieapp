@@ -18,12 +18,12 @@ const PersonSlider = ({ persons, title }) => {
           320: { spaceBetween: 10 },
         }}
       >
-        {persons.map((person) => (
-          <SwiperSlide key={person.id}>
+        {persons.map((person, index) => (
+          <SwiperSlide key={index}>
             <div className="pic">
               {person.profile_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w500` + person.profile_path}
+                  src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
                   alt="사람이미지"
                 />
               ) : (

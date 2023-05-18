@@ -19,7 +19,7 @@ const Slider = ({ genreMovies, videoType }) => {
           <SwiperSlide key={movie.id}>
             <Link to={`/list/${videoType.typeNameEn}/${movie.id}`}>
               <img
-                src={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
               />
             </Link>

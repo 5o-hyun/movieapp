@@ -51,11 +51,15 @@ const Container = styled.nav`
     padding: 0 ${({ theme }) => theme.spacing.minute};
   }
   .menuWrapper {
-    width: 100%;
+    width: 1024px;
+    margin: 0 auto;
     height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    @media ${({ theme }) => theme.devices.tablet} {
+      width: 100%;
+    }
     .menu {
       &.active {
         color: ${({ theme }) => theme.colors.subColor};

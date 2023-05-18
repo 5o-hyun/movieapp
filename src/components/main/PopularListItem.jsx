@@ -8,11 +8,7 @@ const PopularListItem = ({ genre, videoType }) => {
   return (
     <Container>
       <h3 className="blind">{videoType.typeNameKo + '/' + genre.name}</h3>
-      <Title
-        name={videoType.typeNameKo + '/' + genre.name}
-        icon
-        fontSize={1.6}
-      />
+      <Title name={videoType.typeNameKo + '/' + genre.name} fontSize={1.6} />
       <Slider genreMovies={genre.movies} videoType={videoType} />
     </Container>
   );

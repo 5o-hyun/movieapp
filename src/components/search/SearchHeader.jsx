@@ -11,32 +11,34 @@ const SearchHeader = ({
 }) => {
   return (
     <Container>
-      <div className="searchWrapper">
-        <div className="genreTabGroup">
-          {videoTypes.map((videoType) => (
-            <button
-              key={videoType.id}
-              className={
-                isSearchTab === videoType.id
-                  ? 'genreTabBtn active'
-                  : 'genreTabBtn'
-              }
-              onClick={() => onClickSearchTab(videoType.id)}
-            >
-              {videoType.name}
-            </button>
-          ))}
+      <div className="searchContainer">
+        <div className="searchWrapper">
+          <div className="genreTabGroup">
+            {videoTypes.map((videoType) => (
+              <button
+                key={videoType.id}
+                className={
+                  isSearchTab === videoType.id
+                    ? 'genreTabBtn active'
+                    : 'genreTabBtn'
+                }
+                onClick={() => onClickSearchTab(videoType.id)}
+              >
+                {videoType.name}
+              </button>
+            ))}
+          </div>
+          <input
+            type="text"
+            placeholder="검색어를 입력해주세요."
+            value={searchText}
+            onChange={onChangeSearchText}
+          />
         </div>
-        <input
-          type="text"
-          placeholder="검색어를 입력해주세요."
-          value={searchText}
-          onChange={onChangeSearchText}
-        />
+        <button className="searchBtn">
+          <AiOutlineSearch />
+        </button>
       </div>
-      <button className="searchBtn">
-        <AiOutlineSearch />
-      </button>
     </Container>
   );
 };
@@ -45,13 +47,22 @@ const Container = styled.div`
   align-items: center;
   height: 10rem;
   background-color: ${({ theme }) => theme.colors.gray[800]};
-  padding: ${({ theme }) => theme.spacing.bigLarge};
   @media ${({ theme }) => theme.devices.tablet} {
     height: 8rem;
+    padding: ${({ theme }) => theme.spacing.bigLarge};
   }
   @media ${({ theme }) => theme.devices.mobile} {
     height: 6rem;
     padding: ${({ theme }) => theme.spacing.base};
+  }
+  .searchContainer {
+    width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    @media ${({ theme }) => theme.devices.tablet} {
+      width: 100%;
+    }
   }
   .searchWrapper {
     display: flex;

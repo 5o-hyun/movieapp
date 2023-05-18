@@ -13,13 +13,17 @@ const Review = ({ reviews }) => {
             <li key={review.id} className="reviewWrapper">
               <div className="reviewPersonImg">
                 {review.author_details.avatar_path ? (
-                  <img
-                    src={
-                      `https://image.tmdb.org/t/p/w500` +
-                      review.author_details.avatar_path
-                    }
-                    alt="사람이미지"
-                  />
+                  review.author_details.avatar_path.includes('/http') ? (
+                    <img
+                      src={review.author_details.avatar_path.slice(1)}
+                      alt="사람이미지"
+                    />
+                  ) : (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${review.author_details.avatar_path}`}
+                      alt="사람이미지"
+                    />
+                  )
                 ) : (
                   <BsPersonFillSlash />
                 )}

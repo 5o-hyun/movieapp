@@ -69,7 +69,7 @@ const DetailContainer = () => {
       {locationType === 'tv' && (
         <DetailImgSlider name="시즌" contents={movie.seasons} />
       )}
-      <PosterSlider posters={posters} />
+      {posters.length !== 0 && <PosterSlider posters={posters} />}
       {reviews.length !== 0 && <Review reviews={reviews} />}
       {movie.production_companies.length !== 0 && (
         <Company companies={movie.production_companies} />

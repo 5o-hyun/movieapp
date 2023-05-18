@@ -12,10 +12,7 @@ const GenreListItem = ({ contents, genreContentsItem }) => {
         <div className="picture">
           {genreContentsItem.poster_path ? (
             <img
-              src={
-                `https://image.tmdb.org/t/p/w500` +
-                genreContentsItem.poster_path
-              }
+              src={`https://image.tmdb.org/t/p/w500${genreContentsItem.poster_path}`}
               alt="영화포스터"
             />
           ) : (

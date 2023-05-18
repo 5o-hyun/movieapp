@@ -33,9 +33,7 @@ const SearchListItem = ({ searchLists, videoTypeActive }) => {
               <div className="imgBox">
                 {searchList.poster_path ? (
                   <img
-                    src={
-                      `https://image.tmdb.org/t/p/w500` + searchList.poster_path
-                    }
+                    src={`https://image.tmdb.org/t/p/w500${searchList.poster_path}`}
                     alt="영화포스터"
                   />
                 ) : (
@@ -43,7 +41,11 @@ const SearchListItem = ({ searchLists, videoTypeActive }) => {
                 )}
               </div>
               <div className="contentsMainInfo">
-                <p className="title">{searchList.title}</p>
+                <p className="title">
+                  {videoTypeActive === 'movie'
+                    ? searchList.title
+                    : searchList.name}
+                </p>
                 <p className="desc">{searchList.overview}</p>
               </div>
             </div>
@@ -63,7 +65,9 @@ const SearchListItem = ({ searchLists, videoTypeActive }) => {
               <div className="contentsSubInfo">
                 <Star point={searchList.vote_average} />
                 <Like count={searchList.vote_count} />
-                <Date date={searchList.release_date} />
+                {searchList.release_date && (
+                  <Date date={searchList.release_date} />
+                )}
               </div>
             </div>
           </Container>

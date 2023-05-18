@@ -30,7 +30,7 @@ const PopularSlider = ({ videoType }) => {
           <SwiperSlide key={contents.id}>
             <Link to={`/list/${videoType.typeNameEn}/${contents.id}`}>
               <img
-                src={`https://image.tmdb.org/t/p/w500` + contents.poster_path}
+                src={`https://image.tmdb.org/t/p/w500${contents.poster_path}`}
                 alt={contents.title}
                 className="poster"
               />

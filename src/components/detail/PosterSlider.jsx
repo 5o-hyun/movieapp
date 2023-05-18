@@ -18,7 +18,7 @@ const PosterSlider = ({ posters }) => {
         {posters.map((poster, index) => (
           <SwiperSlide key={index}>
             <img
-              src={`https://image.tmdb.org/t/p/w500` + poster.file_path}
+              src={`https://image.tmdb.org/t/p/w500${poster.file_path}`}
               alt=""
             />
           </SwiperSlide>

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Company = ({ companies }) => {
-  console.log(companies);
   return (
     <Container>
       <p className="title">제작협찬 ({companies.length})</p>
@@ -11,7 +10,7 @@ const Company = ({ companies }) => {
           <li className="companiesLogo" key={company.id}>
             {company.logo_path ? (
               <img
-                src={`https://image.tmdb.org/t/p/w500` + company.logo_path}
+                src={`https://image.tmdb.org/t/p/w500${company.logo_path}`}
                 alt={company.name}
               />
             ) : (
